@@ -3,26 +3,27 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './stylessignup.css';
 
-
 const Signup = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isEventOrganizer, setIsEventOrganizer] = useState(false);
   const history = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:5001/api/signup', {
+      const response = await axios.post('http://192.168.1.106:5001/api/auth/signup', {
         name,
         email,
-        password
+        password,
+        isEventOrganizer
       });
 
       if (response.status === 200) {
         alert('Signup successful');
-        history.push('/login');
+        history('/login');
       } else {
         alert('Signup failed: ' + response.data.message);
       }
@@ -61,6 +62,14 @@ const Signup = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+          />
+        </div>
+        <div className="form-group checkbox-group">
+          <label>Are you an Event Organizer?</label>
+          <input
+            type="checkbox"
+            checked={isEventOrganizer}
+            onChange={(e) => setIsEventOrganizer(e.target.checked)}
           />
         </div>
         <button type="submit">Sign Up</button>
