@@ -85,3 +85,29 @@ body {
     color: #ff1c4f;
   }
   
+  .full-screen {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+  }
+
+  .image-section {
+      width: 60%;
+      background-color: #f0f0f0;
+      height: 100%;
+  }
+
+  .image-section img {
+      width: 100%;
+      min-height: 99vh;
+      object-fit: fill;
+  }
+
+  .login-section {
+      width: 40%;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color: #fff;
+  }

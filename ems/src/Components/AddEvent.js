@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axiosInstance from '../api/axios';
 import './AddEvent.css';
+import banner from './event.avif'
 
 const AddEvent = () => {
   const [title, setTitle] = useState('');
@@ -8,6 +9,7 @@ const AddEvent = () => {
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
   const [type, setType] = useState('Session');
+  const [location, setLocation] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,6 +18,7 @@ const AddEvent = () => {
       const response = await axiosInstance.post('http://localhost:5001/api/events', {
         title,
         description,
+        location,
         startTime,
         endTime,
         type
@@ -25,6 +28,7 @@ const AddEvent = () => {
         alert('Event created successfully');
         setTitle('');
         setDescription('');
+        setLocation('');
         setStartTime('');
         setEndTime('');
         setType('Session');
@@ -38,7 +42,8 @@ const AddEvent = () => {
   };
 
   return (
-    <div className="container">
+    <div className="full-screen">
+      <div className='login-section'>
       <h2>Add New Event</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -48,7 +53,7 @@ const AddEvent = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
-          />
+            />
         </div>
         <div className="form-group">
           <label>Description:</label>
@@ -59,13 +64,22 @@ const AddEvent = () => {
           />
         </div>
         <div className="form-group">
+          <label>Location:</label>
+          <input
+            type="text"
+            value={location}
+            onChange={(e) => setLocation(e.target.value)}
+            required
+            />
+        </div>
+        <div className="form-group">
           <label>Start Time:</label>
           <input
             type="datetime-local"
             value={startTime}
             onChange={(e) => setStartTime(e.target.value)}
             required
-          />
+            />
         </div>
         <div className="form-group">
           <label>End Time:</label>
@@ -74,7 +88,7 @@ const AddEvent = () => {
             value={endTime}
             onChange={(e) => setEndTime(e.target.value)}
             required
-          />
+            />
         </div>
         <div className="form-group">
           <label>Type:</label>
@@ -86,6 +100,10 @@ const AddEvent = () => {
         </div>
         <button type="submit">Add Event</button>
       </form>
+      </div>
+      <div className='image-section'>
+      <img src={banner} alt="Background Image"></img>
+      </div>
     </div>
   );
 };

@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './stylessignup.css';
+import banner from './signup.jpg'
 
 const Signup = () => {
-  const [name, setName] = useState('');
+  const [username, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEventOrganizer, setIsEventOrganizer] = useState(false);
@@ -15,7 +16,7 @@ const Signup = () => {
 
     try {
       const response = await axios.post('http://192.168.1.106:5001/api/auth/signup', {
-        name,
+        username,
         email,
         password,
         isEventOrganizer
@@ -34,14 +35,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="container">
+    <div className="full-screen">
+      <div className='image-section'>
+      <img src={banner} alt="Background Image"></img>
+      </div>
+      <div className='login-section'>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Name:</label>
           <input
             type="text"
-            value={name}
+            value={username}
             onChange={(e) => setName(e.target.value)}
             required
           />
@@ -77,6 +82,7 @@ const Signup = () => {
       <p>
         Already have an account? <a href="/login">Login</a>
       </p>
+      </div>
     </div>
   );
 };

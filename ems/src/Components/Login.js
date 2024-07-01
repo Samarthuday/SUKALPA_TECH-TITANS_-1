@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import banner from './login.jpg'
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -51,12 +52,44 @@ const Login = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email:</label>
-          <input
+    // <div className="container">
+    //   <h2>Login</h2>
+    //   <form onSubmit={handleSubmit}>
+    //     <div className="form-group">
+    //       <label>Email:</label>
+    //       <input
+    //         type="email"
+    //         value={email}
+    //         onChange={(e) => setEmail(e.target.value)}
+    //         required
+    //       />
+    //     </div>
+    //     <div className="form-group">
+    //       <label>Password:</label>
+    //       <input
+    //         type="password"
+    //         value={password}
+    //         onChange={(e) => setPassword(e.target.value)}
+    //         required
+    //       />
+    //     </div>
+    //     <button type="submit">Login</button>
+    //   </form>
+    //   {loginError && <p>{loginError}</p>}
+    //   <p>
+    //     Don't have an account? <a href="/signup">Sign up</a>
+    //   </p>
+    // </div>
+    <div className="full-screen">
+        <div className="image-section">
+            <img src={banner} alt="Background Image"></img>
+        </div>
+        <div class="login-section">
+        <h2>Login</h2>
+       <form onSubmit={handleSubmit}>
+         <div className="form-group">
+           <label>Email:</label>
+           <input
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -78,6 +111,7 @@ const Login = () => {
       <p>
         Don't have an account? <a href="/signup">Sign up</a>
       </p>
+        </div>
     </div>
   );
 };
