@@ -34,7 +34,9 @@ const EventList = () => {
     }
   }, []);
 
-  const handleEventClick = (eventId) => {
+  const handleEventClick = (event_title, eventId) => {
+    localStorage.setItem("event_title", event_title);
+    localStorage.setItem('event_id', eventId);
     navigate(`/EventRegistrationForm/`); // Navigate to registration form with eventId
   };
 
@@ -43,7 +45,7 @@ const EventList = () => {
       <h2>Event Schedule</h2>
       <ul>
         {events.map(event => (
-          <li key={event._id} onClick={() => handleEventClick(event._id)} style={{ cursor: 'pointer' }}>
+          <li key={event._id} onClick={() => handleEventClick(event.title, event._id)} style={{ cursor: 'pointer' }}>
             <h3>{event.title}</h3>
             <p>{event.description}</p>
             <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>

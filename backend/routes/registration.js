@@ -6,10 +6,9 @@ const Event = require('../models/Event');
 const authenticateUser = require('../middleware/authenticateUser'); // Custom middleware to authenticate user
 
 // Route to handle registration
-router.post('/', authenticateUser, async (req, res) => {
-  const { eventId, ticketType } = req.body;
-  const userId = req.user._id;
-
+router.post('/', async (req, res) => {
+  const { numberOfPeople, firstName, lastName } = req.body;
+  console.log(`${numberOfPeople}\n${firstName}\n${lastName}`);
   try {
     const event = await Event.findById(eventId);
     if (!event) {
@@ -34,9 +33,9 @@ router.post('/', authenticateUser, async (req, res) => {
 });
 
 // Route to handle payment
-router.post('/payment', authenticateUser, async (req, res) => {
+router.post('/payment', async (req, res) => {
   const { token, amount } = req.body;
-
+  console.log(`${token}\n${amount}`);
   try {
     const charge = await stripe.charges.create({
       amount,

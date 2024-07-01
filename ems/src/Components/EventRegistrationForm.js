@@ -5,7 +5,7 @@ import axiosInstance from '../api/axios';
 import './EventRegistrationForm.css'; // Import the CSS file
 
 const EventRegistrationForm = () => {
-  const { eventId } = useParams(); // Get eventId from URL parameters
+  const event = localStorage.getItem('events');
   const [eventDetails, setEventDetails] = useState({});
   const [numberOfPeople, setNumberOfPeople] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -15,14 +15,14 @@ const EventRegistrationForm = () => {
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await axiosInstance.get(`http://192.168.1.106:5001/api/events/${eventId}`);
+        const response = await axiosInstance.get(`http://192.168.1.106:5001/api/events`);
         setEventDetails(response.data);
       } catch (error) {
         console.error('Error fetching event details:', error);
       }
     };
     fetchEventDetails();
-  }, [eventId]);
+  }, [event]);
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -45,7 +45,7 @@ const EventRegistrationForm = () => {
 
   return (
     <div className="container">
-      <h2>Register for {localStorage.getItem("events")}</h2>
+      <h2>Register for {localStorage.getItem('event_title')}</h2>
       <form onSubmit={handleRegistration}>
 
         <label htmlFor="numberOfPeople">Number of People:</label>
