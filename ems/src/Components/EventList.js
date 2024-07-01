@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axios';
+import './EventList.css';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await axiosInstance.get('http://localhost:5001/api/events');
+      const response = await axiosInstance.get('http://192.168.1.106:5001/api/events');
       setEvents(response.data);
     };
     fetchEvents();

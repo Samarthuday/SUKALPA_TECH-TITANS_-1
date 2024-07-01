@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import axiosInstance from '../api/axios';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import './stylessignup.css';
+
 
 const Signup = () => {
   const [name, setName] = useState('');
@@ -12,7 +14,7 @@ const Signup = () => {
     e.preventDefault();
 
     try {
-      const response = await axiosInstance.post('http://localhost:5001/api/signup', {
+      const response = await axios.post('http://localhost:5001/api/signup', {
         name,
         email,
         password

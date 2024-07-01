@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axiosInstance from '../api/axios';
+import './PersonalizedAgenda.css';
 
 const PersonalizedAgenda = () => {
   const [events, setEvents] = useState([]);

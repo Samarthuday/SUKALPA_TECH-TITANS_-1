@@ -18,7 +18,7 @@ function App() {
               <Link to="/signup">Signup</Link>
             </li>
             <li>
-              <Link to="/events">Events</Link>
+              <Link to="/events">Event List</Link>
             </li>
             <li>
               <Link to="/add-event">Add Event</Link>

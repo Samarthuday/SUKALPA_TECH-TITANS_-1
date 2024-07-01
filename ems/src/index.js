@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import Login from './Components/Login'
 import reportWebVitals from './reportWebVitals';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -10,11 +9,12 @@ import AddEvent from './Components/AddEvent';
 import EventList from './Components/EventList';
 import WrappedRegistrationForm from './Components/RegistrationForm';
 import PersonalizedAgenda from './Components/PersonalizedAgenda';
+import HomePage from './Components/HomePage';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <HomePage />,
   },
   {
     path: "/login",
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
     element: <AddEvent />,
   },
   {
-    path: "/eventlist",
+    path: "/events",
     element: <EventList />,
   },
   {

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axiosInstance from '../api/axios';
+import './AddEvent.css';
 
 const AddEvent = () => {
   const [title, setTitle] = useState('');
