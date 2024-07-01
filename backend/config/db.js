@@ -7,6 +7,8 @@ const connectDB = async () => {
     await mongoose.connect('mongodb://localhost/ems', {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      user: process.env.MONGO_USER,
+      pass: process.env.MONGO_PASS
     });
     console.log('MongoDB connected');
   } catch (err) {

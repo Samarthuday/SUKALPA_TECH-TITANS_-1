@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Registration = require('../models/Registration');
-const stripe = require('stripe')('your-stripe-secret-key'); // Replace with your Stripe secret key
+const stripe = require('stripe')('sk_test_tR3PYbcVNZZ796tH88S4VQ2u'); // Replace with your Stripe secret key
 
 // Route to handle registration
 router.post('/', async (req, res) => {
