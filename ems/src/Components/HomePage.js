@@ -41,11 +41,13 @@ const HomePage = () => {
       </header>
       <hr />
       <div className="slideshow-container">
-        {images.map((src, index) => (
-          <div key={index} className={`slide ${index === currentIndex ? 'active' : ''}`}>
-            <img src={src} alt={`Event ${index + 1}`} className="slide-image" />
-          </div>
-        ))}
+        <div className="slider">
+          {images.map((src, index) => (
+            <div key={index} className={`slide ${index === currentIndex ? 'active' : ''}`}>
+              <img src={src} alt={`Event ${index + 1}`} className="slide-image" />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

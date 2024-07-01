@@ -1,24 +1,49 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../api/axios';
 import './EventList.css';
 
 const EventList = () => {
   const [events, setEvents] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await axiosInstance.get('http://192.168.1.106:5001/api/events');
-      setEvents(response.data);
+      try {
+        const response = await axiosInstance.get('http://192.168.1.106:5001/api/events');
+        const fetchedEvents = response.data;
+        
+        if (Array.isArray(fetchedEvents)) {
+          setEvents(fetchedEvents);
+          // Store events in local storage
+         // localStorage.setItem('events', JSON.stringify(fetchedEvents));
+        } else {
+          console.error('Fetched data is not an array:', fetchedEvents);
+        }
+      } catch (error) {
+        console.error('Error fetching events:', error);
+      }
     };
-    fetchEvents();
+
+    // Check if events are already in local storage
+    const storedEvents = JSON.parse(localStorage.getItem('events'));
+    if (storedEvents && Array.isArray(storedEvents)) {
+      setEvents(storedEvents);
+    } else {
+      fetchEvents();
+    }
   }, []);
+
+  const handleEventClick = (eventId) => {
+    navigate(`/EventRegistrationForm/`); // Navigate to registration form with eventId
+  };
 
   return (
     <div className="container">
       <h2>Event Schedule</h2>
       <ul>
         {events.map(event => (
-          <li key={event._id}>
+          <li key={event._id} onClick={() => handleEventClick(event._id)} style={{ cursor: 'pointer' }}>
             <h3>{event.title}</h3>
             <p>{event.description}</p>
             <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>

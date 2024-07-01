@@ -21,6 +21,7 @@ app.use(express.json()); // Body parser
 app.use('/api', require('./routes/index'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/registration', require('./routes/registration'));
+
 app.use('/api/events', require('./routes/events'));
 
 app.use(express.static('frontend/public'))

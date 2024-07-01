@@ -10,6 +10,8 @@ import EventList from './Components/EventList';
 import WrappedRegistrationForm from './Components/RegistrationForm';
 import PersonalizedAgenda from './Components/PersonalizedAgenda';
 import HomePage from './Components/HomePage';
+import EventRegistrationForm from './Components/EventRegistrationForm';
+import PaymentForm from './Components/PaymentForm';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
   {
     path: "/personalizedagenda",
     element: <PersonalizedAgenda />,
+  },
+  {
+    path: "/eventregistrationform",
+    element: <EventRegistrationForm />,
+  },
+  {
+    path: "/paymentform",
+    element: <PaymentForm />,
   },
 ]);
 

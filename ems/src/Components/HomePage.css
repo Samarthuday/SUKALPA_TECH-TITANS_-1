@@ -1,13 +1,20 @@
 .homepage-container {
-  max-width: 960px;
-  margin: 0 auto;
+  max-width: auto;
+  min-height: 100vh;
+  min-width: 100vw;
   padding: 20px;
+  background-color: #787fd1; /* Subtle background color */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -19,6 +26,8 @@
 .auth-buttons {
   display: flex;
   gap: 10px;
+  margin-left: auto;
+  margin-bottom: auto;
 }
 
 .button {
@@ -32,38 +41,38 @@
 .slideshow-container {
   overflow: hidden;
   position: relative;
+  max-width: 100%; /* Ensures slideshow container fills its parent */
+  width: 100%;
+  max-width: 960px;
 }
 
 .slider {
   display: flex;
-  animation: slideAnimation 10s linear infinite; /* Adjust duration and timing function */
+  transition: transform 1s ease;
+  animation: slideAnimation 12s linear infinite; /* Adjust duration (12s) to control speed */
+  width: 100%; /* Ensure slider takes full width */
 }
 
 .slide {
-  min-width: 100%;
-  flex: 0 0 auto;
-  transition: opacity 1s ease;
-  display: none;
-}
-
-.slide.active {
-  display: block;
+  flex: 0 0 100%; /* Ensure each slide takes up full width */
+  overflow: hidden; /* Ensure image overflow is hidden */
 }
 
 .slide img {
   width: 100%; /* Ensures the image fills its container */
   height: auto; /* Maintains aspect ratio */
-  object-fit: cover; /* Ensures the image covers the entire area */
+  object-fit: cover; /* Cover the entire area */
 }
 
 @keyframes slideAnimation {
   0% {
-    transform: translateX(0%);
+    transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(calc(-100% * 11)); /* Adjust number of images (11) */
   }
 }
+
 
 .slide img {
   width: 100%; /* Ensures the image fills its container */
