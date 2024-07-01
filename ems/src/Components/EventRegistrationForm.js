@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { registerForEvent } from './Booking'; // Import registerForEvent function
 import axiosInstance from '../api/axios';
+import { useNavigate } from 'react-router-dom'
 import './EventRegistrationForm.css'; // Import the CSS file
 
 const EventRegistrationForm = () => {
-  const event = localStorage.getItem('events');
+  const navigate = useNavigate();
+  const eventId = localStorage.getItem('event_id');
+  const eventTitle = localStorage.getItem('event_title');
   const [eventDetails, setEventDetails] = useState({});
   const [numberOfPeople, setNumberOfPeople] = useState('');
   const [firstName, setFirstName] = useState('');
@@ -22,7 +25,7 @@ const EventRegistrationForm = () => {
       }
     };
     fetchEventDetails();
-  }, [event]);
+  }, [eventId]);
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -33,11 +36,12 @@ const EventRegistrationForm = () => {
     }
 
     try {
-      await registerForEvent(numberOfPeople, firstName, lastName);
+      await registerForEvent(eventId, numberOfPeople, firstName, lastName);
       setRegistrationMessage('You have successfully registered for the event!');
       setNumberOfPeople('');
       setFirstName('');
       setLastName('');
+      navigate('/paymentform');
     } catch (error) {
       setRegistrationMessage(error.message);
     }
@@ -45,7 +49,7 @@ const EventRegistrationForm = () => {
 
   return (
     <div className="container">
-      <h2>Register for {localStorage.getItem('event_title')}</h2>
+      <h2>Register for {eventTitle}</h2>
       <form onSubmit={handleRegistration}>
 
         <label htmlFor="numberOfPeople">Number of People:</label>

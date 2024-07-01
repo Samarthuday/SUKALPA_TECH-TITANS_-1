@@ -7,8 +7,8 @@ const authenticateUser = require('../middleware/authenticateUser'); // Custom mi
 
 // Route to handle registration
 router.post('/', async (req, res) => {
-  const { numberOfPeople, firstName, lastName } = req.body;
-  console.log(`${numberOfPeople}\n${firstName}\n${lastName}`);
+  const { eventId, numberOfPeople, firstName, lastName } = req.body;
+  console.log(`${eventId}\n${numberOfPeople}\n${firstName}\n${lastName}`);
   try {
     const event = await Event.findById(eventId);
     if (!event) {
@@ -16,9 +16,10 @@ router.post('/', async (req, res) => {
     }
 
     const newRegistration = new Registration({
-      user: userId,
+      count: numberOfPeople,
       event: eventId,
-      ticketType
+      name: firstName,
+      email: (Math.random() + 1).toString(36).substring(7),
     });
 
     await newRegistration.save();
@@ -28,6 +29,7 @@ router.post('/', async (req, res) => {
 
     res.status(200).json({ message: 'Registration successful', registration: newRegistration });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Registration failed', error: error.message });
   }
 });

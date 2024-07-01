@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 // Function to handle event registration
-export const registerForEvent = async (numberOfPeople, firstName, lastName) => {
+export const registerForEvent = async (eventId, numberOfPeople, firstName, lastName) => {
     try {
-        const response = await axios.post('http://192.168.1.106:5001/api/registration', { numberOfPeople, firstName, lastName });
+        const response = await axios.post('http://192.168.1.106:5001/api/registration', { eventId, numberOfPeople, firstName, lastName });
         return response.data;
     } catch (error) {
         // Check if the error has a response
