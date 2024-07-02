@@ -1,102 +1,135 @@
-/* General styles */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 800px;
-    padding: 20px;
-    text-align: center;
-    margin: 20px;
-  }
-  
-  h2 {
-    color: #ff3f6c;
-    margin-bottom: 20px;
-  }
-  
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 15px;
-    padding: 15px;
-    text-align: left;
-    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  }
-  
-  li:hover {
-    background-color: #ff3f6c;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transform: translateY(-5px);
-    color: #fff;
-  }
-  
-  h3 {
-    margin: 0 0 10px;
-    color: #333;
-  }
-  
-  p {
-    margin: 5px 0;
-    color: #666;
-  }
-  
-  p:last-child {
-    margin-bottom: 0;
-  }
-  
-  button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-    transform: translateY(-3px);
-  }
-  
-  @media (max-width: 600px) {
-    .container {
-      width: 90%;
-    }
-  
-    h2 {
-      font-size: 24px;
-    }
-  
-    h3 {
-      font-size: 18px;
-    }
-  
-    p {
-      font-size: 14px;
-    }
-  
-    button {
-      font-size: 12px;
-    }
-  }
-  
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(to right, #e0f7fa, #80deea);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  min-width: 100vw;
+  flex-direction: column;
+  align-items: center;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20px;
+  background-color: #00796b;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.buttons button {
+  background-color: #004d40;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 10px;
+}
+
+.buttons button:hover {
+  background-color: #00251a;
+}
+
+.section {
+  display: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px; /* Adjust this value if needed to avoid overlap with the buttons */
+}
+
+.section.visible {
+  display: flex;
+}
+
+.form-and-details {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.agenda-form {
+  width: 60%;
+}
+
+.agenda-form label,
+.submitted-data p,
+.submitted-data h4 {
+  display: block;
+  margin-bottom: 8px;
+  color: #00796b;
+}
+
+.agenda-form input[type="text"],
+.agenda-form input[type="date"],
+.agenda-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.agenda-form button {
+  width: 100%;
+  padding: 10px;
+  background: #00796b;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.agenda-form button:hover {
+  background: #004d40;
+}
+
+.submitted-data {
+  width: 35%;
+  background: #f9fbe7;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.submitted-data h3 {
+  margin-top: 0;
+}
+
+.submitted-data p {
+  margin: 5px 0;
+}
+
+.submitted-data ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.submitted-data li {
+  margin-bottom: 10px;
+}

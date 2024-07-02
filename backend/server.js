@@ -34,6 +34,20 @@ app.get('/signup', (req, res) => {
     res.sendFile(path.resolve(__dirname,'..', 'frontend', 'public', 'signup.html'));
 })
 
+let attendees = [
+    // Example attendee data
+  ];
+  
+  app.get('/api/auth/attendees', (req, res) => {
+    res.json(attendees);
+  });
+  
+  app.post('/api/auth/matchmaking', (req, res) => {
+    const { attendees } = req.body;
+    // Simple matchmaking logic
+    const connections = attendees; // Replace with actual matchmaking logic
+    res.json(connections);
+  });
 
 // Start the server
 const PORT = process.env.PORT || 5001;
