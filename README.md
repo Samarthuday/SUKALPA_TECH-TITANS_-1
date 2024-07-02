@@ -10,6 +10,9 @@ The Event Management System is a web-based application designed to help organiza
 - *Attendee Management*: Track attendee information, manage check-ins, and generate attendance reports.
 - *Scheduling*: Create and manage event schedules, sessions.
 
+## Video Demonstration
+[Google Drive Link](https://drive.google.com/file/d/1e6v5SkW1om2RyVbviiWVviKrf_0ssHLt/view?usp=sharing)
+
 ## Installation
 
 ### Prerequisites
