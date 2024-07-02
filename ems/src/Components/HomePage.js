@@ -40,15 +40,38 @@ const HomePage = () => {
         </div>
       </header>
       <hr />
-      <div className="slideshow-container">
-        <div className="slider">
-          {images.map((src, index) => (
-            <div key={index} className={`slide ${index === currentIndex ? 'active' : ''}`}>
-              <img src={src} alt={`Event ${index + 1}`} className="slide-image" />
+      <div className="content">
+        <div className="slideshow-container">
+          <div className="slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+            {images.map((src, index) => (
+              <div key={index} className={`slide ${index === currentIndex ? 'active' : ''}`}>
+                <img src={src} alt={`Event ${index + 1}`} className="slide-image" />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="info-section">
+          <h2>Welcome to Tech-Titans</h2>
+          <p>Your one-stop platform for tech events and conferences. Stay updated with the latest events in the tech world and never miss an opportunity to learn and network.</p>
+          <div className="features">
+            <div className="feature">
+              <h3>Discover Events</h3>
+              <p>Find and attend the best tech events happening around you. Explore our extensive list of upcoming events and pick the ones that interest you.</p>
             </div>
-          ))}
+            <div className="feature">
+              <h3>Connect with Organizers</h3>
+              <p>Get in touch with event organizers and gain insights into the events. Network with industry leaders and professionals.</p>
+            </div>
+            <div className="feature">
+              <h3>Join the Community</h3>
+              <p>Become a part of our tech community. Sign up to receive updates, news, and special offers related to tech events.</p>
+            </div>
+          </div>
         </div>
       </div>
+      <footer className="footer">
+        <p>&copy; 2024 Tech-Titans. All rights reserved.</p>
+      </footer>
     </div>
   );
 };
