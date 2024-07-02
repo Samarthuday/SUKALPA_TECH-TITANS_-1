@@ -39,7 +39,6 @@ const HomePage = () => {
           </Link>
         </div>
       </header>
-      <hr />
       <div className="content">
         <div className="slideshow-container">
           <div className="slider" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>

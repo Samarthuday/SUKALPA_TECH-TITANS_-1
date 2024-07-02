@@ -19,7 +19,6 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   padding: 20px;
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
@@ -33,6 +32,10 @@ body {
   padding: 20px;
   background-color: var(--header-footer-bg);
   color: white;
+  position: fixed; /* Ensures the header is fixed at the top */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Ensures the header is on top of other elements */
 }
 
 .logo {
@@ -62,16 +65,18 @@ body {
 .content {
   width: 100%;
   display: flex;
+  max-width: auto;
   flex-direction: column;
-  align-items: center;
+  align-items: center;  
   gap: 20px;
+  margin-top: 80px; /* Adds margin to account for the fixed header */
 }
 
 .slideshow-container {
   overflow: hidden;
   width: 100%;
-  max-width: 960px;
-  max-height: 500px;
+  max-width: auto;
+  max-height: 1000px;
   margin: 20px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
@@ -93,9 +98,9 @@ body {
 }
 
 .info-section {
-  max-width: 960px;
+  width: 100%; /* Ensures the section takes the entire width */
   padding: 20px;
-  background-color: white;
+  background-color: rgb(241, 226, 162);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   text-align: center;
@@ -117,6 +122,6 @@ body {
   width: 100%;
   padding: 20px;
   background-color: var(--header-footer-bg);
-  color: white;
+  color: rgb(78, 78, 183);
   text-align: center;
 }
