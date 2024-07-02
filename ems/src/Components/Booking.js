@@ -3,7 +3,7 @@ import axios from 'axios';
 // Function to handle event registration
 export const registerForEvent = async (eventId, numberOfPeople, firstName, lastName) => {
     try {
-        const response = await axios.post('http://192.168.1.106:5001/api/registration', { eventId, numberOfPeople, firstName, lastName });
+        const response = await axios.post('http://localhost:5001/api/registration', { eventId, numberOfPeople, firstName, lastName });
         return response.data;
     } catch (error) {
         // Check if the error has a response
@@ -23,7 +23,7 @@ export const registerForEvent = async (eventId, numberOfPeople, firstName, lastN
 // Function to handle payment
 export const makePayment = async (token, amount, email) => {
     try {
-        const response = await axios.post('http://192.168.1.106:5001/api/registration/payment', { token, amount, email });
+        const response = await axios.post('http://localhost:5001/api/registration/payment', { token, amount, email });
         return response.data;
     } catch (error) {
         // Check if the error has a response

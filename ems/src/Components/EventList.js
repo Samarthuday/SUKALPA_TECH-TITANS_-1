@@ -10,12 +10,13 @@ const EventList = () => {
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axiosInstance.get('http://192.168.1.106:5001/api/events');
+        const response = await axiosInstance.get('http://localhost:5001/api/events');
         const fetchedEvents = response.data;
-
+        
         if (Array.isArray(fetchedEvents)) {
           setEvents(fetchedEvents);
-          localStorage.setItem('events', JSON.stringify(fetchedEvents)); // Store events in local storage
+          // Store events in local storage
+          // localStorage.setItem('events', JSON.stringify(fetchedEvents));
         } else {
           console.error('Fetched data is not an array:', fetchedEvents);
         }
@@ -24,13 +25,8 @@ const EventList = () => {
       }
     };
 
-    // Check if events are already in local storage
-    const storedEvents = JSON.parse(localStorage.getItem('events'));
-    if (storedEvents && Array.isArray(storedEvents)) {
-      setEvents(storedEvents);
-    } else {
+
       fetchEvents();
-    }
   }, []);
 
   const handleEventClick = (event_title, eventId) => {
@@ -40,19 +36,28 @@ const EventList = () => {
   };
 
   return (
-    <div className="container">
-      <h2>Event Schedule</h2>
-      <ul>
-        {events.map(event => (
-          <li key={event._id} onClick={() => handleEventClick(event.title, event._id)} style={{ cursor: 'pointer' }}>
-            <h3>{event.title}</h3>
-            <p>{event.description}</p>
-            <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
-            <p>Type: {event.type}</p>
-            <p>Price: ${event.price}</p> {/* Display price for each event */}
-          </li>
-        ))}
-      </ul>
+    <div className="page-container">
+      <header className="header">
+        <div className="logo">Tech-Titans</div>
+      </header>
+      <div className="content">
+        <div className="container">
+          <h2>Event Schedule</h2>
+          <ul>
+            {events.map(event => (
+              <li key={event._id} onClick={() => handleEventClick(event.name, event._id)} style={{ cursor: 'pointer' }}>
+                <h3>{event.name}</h3>
+                <p>{new Date(event.date).toLocaleString()}</p>
+                <p>Type: {event.type}</p>
+                <p>${event.price}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <footer className="footer">
+        &copy; 2024 Tech-Titans. All rights reserved.
+      </footer>
     </div>
   );
 };

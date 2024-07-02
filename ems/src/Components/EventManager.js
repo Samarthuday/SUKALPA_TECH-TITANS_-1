@@ -21,7 +21,7 @@ const EventManager = () => {
 
   const fetchEvents = async () => {
     try {
-      const response = await axios.get('http://192.168.1.106:5001/api/events');
+      const response = await axios.get('http://localhost:5001/api/events');
       setEvents(response.data);
     } catch (error) {
       console.error('Error fetching events:', error);
@@ -30,7 +30,7 @@ const EventManager = () => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get('http://192.168.1.106:5001/api/categories');
+      const response = await axios.get('http://localhost:5001/api/categories');
       setCategories(response.data);
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -39,7 +39,7 @@ const EventManager = () => {
 
   const fetchStats = async () => {
     try {
-      const response = await axios.get('http://192.168.1.106:5001/api/events/stats');
+      const response = await axios.get('http://localhost:5001/api/events/stats');
       setStats(response.data);
     } catch (error) {
       console.error('Error fetching stats:', error);
@@ -48,7 +48,7 @@ const EventManager = () => {
 
   const handleAddEvent = async () => {
     try {
-      const response = await axios.post('http://192.168.1.106:5001/api/events', newEvent);
+      const response = await axios.post('http://localhost:5001/api/events', newEvent);
       setEvents([...events, response.data]);
       setNewEvent({
         name: '',

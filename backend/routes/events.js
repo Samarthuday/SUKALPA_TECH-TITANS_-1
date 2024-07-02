@@ -6,26 +6,25 @@ const authenticateOrganizer = require('../middleware/authenticateOrganizer'); //
 
 // Create a new event
 router.post('/', async (req, res) => {
-  const { title, description, date, duration, location } = req.body;
-  const organizerId = req.organizer._id;
+  const { title, description, startTime, endTime, location, price, type } = req.body;
   
   try {
     const newEvent = new Event({
-      title,
+      name: title,
       description,
-      date,
-      duration,
       location,
-      organizer: organizerId
+      date: startTime,
+      duration: endTime,
+      type,
+      price
     });
     
     await newEvent.save();
     
-    // Update organizer's eventsOrganized field
-    await EventOrganizer.findByIdAndUpdate(organizerId, { $push: { eventsOrganized: newEvent._id } });
 
     res.status(201).json({ message: 'Event created successfully', event: newEvent });
   } catch (error) {
+    console.log(error);
     res.status(500).json({ message: 'Failed to create event', error: error.message });
   }
 });
@@ -33,7 +32,17 @@ router.post('/', async (req, res) => {
 // Get all events
 router.get('/', async (req, res) => {
   try {
-    const events = await Event.find().populate('organizer', 'name email');
+    const events = await Event.find();
+    res.status(200).json(events);
+  } catch (error) {
+    res.status(500).json({ message: 'Failed to get events', error: error.message });
+  }
+});
+
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    const events = await Event.findById(id);
     res.status(200).json(events);
   } catch (error) {
     res.status(500).json({ message: 'Failed to get events', error: error.message });
@@ -43,7 +52,7 @@ router.get('/', async (req, res) => {
 // Update an event
 router.put('/:id', async (req, res) => {
   const { id } = req.params;
-  const { title, description, date, duration, location } = req.body;
+  const { title, description, date, duration, location, price } = req.body;
 
   try {
     const event = await Event.findById(id);
@@ -61,6 +70,7 @@ router.put('/:id', async (req, res) => {
     event.date = date;
     event.duration = duration;
     event.location = location;
+    event.price = price;
 
     const updatedEvent = await event.save();
     res.status(200).json({ message: 'Event updated successfully', event: updatedEvent });

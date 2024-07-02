@@ -122,6 +122,6 @@ body {
   width: 100%;
   padding: 20px;
   background-color: var(--header-footer-bg);
-  color: rgb(78, 78, 183);
+  color: white;
   text-align: center;
 }

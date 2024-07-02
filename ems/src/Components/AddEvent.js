@@ -10,6 +10,7 @@ const AddEvent = () => {
   const [endTime, setEndTime] = useState('');
   const [type, setType] = useState('Session');
   const [location, setLocation] = useState('');
+  const [price, setPrice] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +22,8 @@ const AddEvent = () => {
         location,
         startTime,
         endTime,
-        type
+        type,
+        price
       });
 
       if (response.status === 201) {
@@ -32,6 +34,7 @@ const AddEvent = () => {
         setStartTime('');
         setEndTime('');
         setType('Session');
+        setPrice('');
       } else {
         alert('Failed to create event: ' + response.data.message);
       }
@@ -69,6 +72,15 @@ const AddEvent = () => {
             type="text"
             value={location}
             onChange={(e) => setLocation(e.target.value)}
+            required
+            />
+        </div>
+        <div className="form-group">
+          <label>Price:</label>
+          <input
+            type="number"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
             required
             />
         </div>

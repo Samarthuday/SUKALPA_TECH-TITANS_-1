@@ -67,3 +67,11 @@ p {
         width: 100%; /* Ensure full width on smaller screens */
     }
 }
+
+.row-content {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 100vw;
+    min-height: 95vh;
+}
