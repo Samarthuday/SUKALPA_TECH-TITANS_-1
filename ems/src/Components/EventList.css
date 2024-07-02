@@ -101,7 +101,7 @@ li p:last-child {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  min-width: 100vw;
   padding: 20px;
   background-color: var(--header-footer-bg);
   color: white;

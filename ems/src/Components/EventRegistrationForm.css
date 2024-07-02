@@ -75,3 +75,29 @@ p {
     min-width: 100vw;
     min-height: 95vh;
 }
+
+.event-details {
+    background-color: white;
+  margin-bottom: 15px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  min-width: 30vw;
+  min-height: 50vh;
+}
+
+.event-details p {
+    color: black;
+}
+
+.registration-form {
+    background-color: white;
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    min-width: 40vw;
+    min-height: 50vh;
+}
