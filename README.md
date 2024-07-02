@@ -31,16 +31,7 @@ The Event Management System is a web-based application designed to help organiza
     npm install
     
 
-3. *Configure Environment Variables*:
-    Create a .env file in the root directory and add the following:
-    env
-    PORT=3000
-    MONGODB_URI=mongodb://localhost:27017/event_management
-    JWT_SECRET=your_jwt_secret
-    SENDGRID_API_KEY=your_sendgrid_api_key
-    
-
-4. *Run the Application*:
+3. *Run the Application*:
     bash
     npm start
     
@@ -52,8 +43,7 @@ The Event Management System is a web-based application designed to help organiza
 
 ### Creating an Event
 1. Log in to the admin panel.
-2. Navigate to the "Events" section and click "Create Event".
-3. Fill in the event details and click "Save".
+2. Fill in the event details and click "Save".
 
 ### Managing Tickets
 1. Go to the "Tickets" section under the event you created.
@@ -61,25 +51,5 @@ The Event Management System is a web-based application designed to help organiza
 3. Save the ticket information.
 
 ### Registering Attendees
-1. Share the event link with potential attendees.
-2. Attendees can register and purchase tickets through the online form.
-3. Monitor registrations and ticket sales from the admin panel.
+1. Attendees can register and purchase tickets through the online form.
 
-### Sending Notifications
-1. Go to the "Notifications" section.
-2. Compose your message and select the recipients.
-3. Send the notification via email.
-
-## Contributing
-We welcome contributions! Please follow these steps to contribute:
-1. Fork the repository.
-2. Create a new branch (git checkout -b feature/your-feature-name).
-3. Commit your changes (git commit -am 'Add some feature').
-4. Push to the branch (git push origin feature/your-feature-name).
-5. Open a pull request.
-
-## License
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-For any inquiries or issues, please contact us at support@eventmanagementsystem.com.
