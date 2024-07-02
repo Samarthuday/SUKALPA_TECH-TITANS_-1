@@ -19,13 +19,13 @@ const PersonalizedAgenda = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const response = await axiosInstance.get('http://192.168.1.106:5001/api/auth/events');
+      const response = await axiosInstance.get('http://localhost:5001/api/events');
       setEvents(response.data);
     };
 
     const fetchAttendees = async () => {
-      const response = await axiosInstance.get('http://192.168.1.106:5001/api/auth/attendees');
-      setAttendees(response.data);
+      const response = {};//await axiosInstance.get('http://localhost:5001/api/auth/attendees');
+      //setAttendees(response.data);
     };
 
     fetchEvents();
@@ -34,8 +34,8 @@ const PersonalizedAgenda = () => {
 
   useEffect(() => {
     const fetchMatchmaking = async () => {
-      const response = await axiosInstance.post('http://192.168.1.106:5001/api/auth/matchmaking', { attendees });
-      setSuggestedConnections(response.data);
+      const response = {};//await axiosInstance.post('http://localhost:5001/api/auth/matchmaking', { attendees });
+      //setSuggestedConnections(response.data);
     };
 
     fetchMatchmaking();
@@ -78,6 +78,21 @@ const PersonalizedAgenda = () => {
     return eventDate === new Date(form.date).toLocaleDateString();
   });
 
+  const groupAttendeesByEvent = () => {
+    const eventMap = {};
+    suggestedConnections.forEach(attendee => {
+      attendee.events.forEach(eventId => {
+        if (!eventMap[eventId]) {
+          eventMap[eventId] = [];
+        }
+        eventMap[eventId].push(attendee);
+      });
+    });
+    return eventMap;
+  };
+
+  const groupedAttendees = groupAttendeesByEvent();
+
   return (
     <div className="container">
       <div className="buttons">
@@ -102,9 +117,9 @@ const PersonalizedAgenda = () => {
               <ul>
                 {eventsForSelectedDate.map(event => (
                   <li key={event._id}>
-                    <h3>{event.title}</h3>
+                    <h3>{event.name}</h3>
                     <p>{event.description}</p>
-                    <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
+                    <p>{new Date(event.date).toLocaleString()} - {new Date(event.duration).toLocaleString()}</p>
                     <p>Type: {event.type}</p>
                     <input 
                       type="text" 
@@ -136,7 +151,7 @@ const PersonalizedAgenda = () => {
                     const event = events.find(e => e._id === eventId);
                     return (
                       <li key={event._id}>
-                        <p><strong>{event.title}:</strong> {submittedData.eventNotes[eventId]}</p>
+                        <p><strong>{event.name}:</strong> {submittedData.eventNotes[eventId]}</p>
                       </li>
                     );
                   })}
@@ -154,9 +169,9 @@ const PersonalizedAgenda = () => {
               const event = events.find(e => e._id === eventId);
               return (
                 <li key={event._id}>
-                  <h3>{event.title}</h3>
+                  <h3>{event.name}</h3>
                   <p>{event.description}</p>
-                  <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
+                  <p>{new Date(event.date).toLocaleString()} - {new Date(event.duration).toLocaleString()}</p>
                   <p>Type: {event.type}</p>
                 </li>
               );
@@ -167,13 +182,21 @@ const PersonalizedAgenda = () => {
       {visibleSection === 'suggested-connections' && (
         <div id="suggested-connections" className="section">
           <h2>Suggested Connections</h2>
-          <ul>
-            {suggestedConnections.map(attendee => (
-              <li key={attendee._id}>
-                <AttendeeProfile attendee={attendee} />
-              </li>
-            ))}
-          </ul>
+          {Object.keys(groupedAttendees).map(eventId => {
+            const event = events.find(e => e._id === eventId);
+            return (
+              <div key={eventId}>
+                <h3>{event?.name}</h3>
+                <ul>
+                  {groupedAttendees[eventId].map(attendee => (
+                    <li key={attendee._id}>
+                      <AttendeeProfile attendee={attendee} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
       )}
     </div>

@@ -62,7 +62,7 @@ const HomePage = () => {
               <p>Get in touch with event organizers and gain insights into the events. Network with industry leaders and professionals.</p>
             </div>
             <div className="feature">
-              <h3>Join the Community</h3>
+              <Link to='/personalizedagenda'><h3>Join the Community</h3></Link>
               <p>Become a part of our tech community. Sign up to receive updates, news, and special offers related to tech events.</p>
             </div>
           </div>

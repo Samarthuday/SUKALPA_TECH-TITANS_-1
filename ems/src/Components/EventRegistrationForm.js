@@ -59,6 +59,7 @@ const EventRegistrationForm = () => {
           <p>{eventDetails.description}</p>
           <p>Start Time: {new Date(eventDetails.date).toLocaleString()}</p>
           <p>End Time: {new Date(eventDetails.duration).toLocaleString()}</p>
+          <p>Location: {eventDetails.location}</p>
           <p>Type: {eventDetails.type}</p>
         </div>
         <div className="registration-form">
