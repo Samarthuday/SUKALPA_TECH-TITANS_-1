@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { makePayment } from './Booking'; // Import makePayment function
+import './PaymentForm.css'; // Import the CSS file
+import img12 from './img-12.png'; // Import the image file
 
 const PaymentForm = () => {
     const [token, setToken] = useState('');
@@ -12,32 +14,36 @@ const PaymentForm = () => {
 
         try {
             const paymentResponse = await makePayment(token, amount, email);
-            setPaymentMessage(paymentResponse.message);
-            // Optionally, reset form fields after successful payment
+            setPaymentMessage(`Success: ${paymentResponse.message}`);
             setToken('');
             setAmount('');
             setEmail('');
         } catch (error) {
-            setPaymentMessage(error.message);
+            setPaymentMessage(`Error: ${error.message}`);
         }
     };
 
     return (
-        <div>
-            <h2>Payment</h2>
-            <form onSubmit={handlePayment}>
-                <label htmlFor="token">Token:</label>
-                <input type="text" id="token" value={token} onChange={(e) => setToken(e.target.value)} />
+        <div className="main-container">
+            <div className="image-container">
+                {/* Use the imported image variable */}
+                <img src={img12} alt="Description" />
+            </div>
+            <div className="payment-container">
+                <h2>Payment</h2>
+                <form className="payment-form" onSubmit={handlePayment}>
+                    <label htmlFor="amount">Amount:</label>
+                    <input type="text" id="amount" value={amount} onChange={(e) => setAmount(e.target.value)} required />
 
-                <label htmlFor="amount">Amount:</label>
-                <input type="text" id="amount" value={amount} onChange={(e) => setAmount(e.target.value)} />
+                    <label htmlFor="email">Email:</label>
+                    <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
-                <label htmlFor="email">Email:</label>
-                <input type="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-
-                <button type="submit">Pay</button>
-            </form>
-            <p>{paymentMessage}</p>
+                    <button type="submit">Pay</button>
+                </form>
+                <p className={`payment-message ${paymentMessage.startsWith('Success') ? 'success' : 'error'}`}>
+                    {paymentMessage}
+                </p>
+            </div>
         </div>
     );
 };
