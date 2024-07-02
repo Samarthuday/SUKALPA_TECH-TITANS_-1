@@ -8,9 +8,7 @@ The Event Management System is a web-based application designed to help organiza
 - *Event Creation & Management*: Create and manage multiple events with detailed information including date, time, location, and description.
 - *Ticketing & Registration*: Manage ticket types, pricing, and availability. Allow users to register and purchase tickets online.
 - *Attendee Management*: Track attendee information, manage check-ins, and generate attendance reports.
-- *Scheduling*: Create and manage event schedules, sessions, and speaker details.
-- *Notifications*: Send email notifications and reminders to attendees and organizers.
-- *Reports & Analytics*: Generate detailed reports on registrations, ticket sales, and attendee demographics.
+- *Scheduling*: Create and manage event schedules, sessions.
 
 ## Installation
 
@@ -21,20 +19,20 @@ The Event Management System is a web-based application designed to help organiza
 
 ### Steps
 1. *Clone the Repository*:
-    bash
-    git clone https://github.com/your-username/event-management-system.git
+    ```bash
+    git clone https://github.com/Samarthuday/SUKALPA_TECH-TITANS_-1.git
     cd event-management-system
-    
+    ```
 
 2. *Install Dependencies*:
-    bash
+    ```bash
     npm install
-    
+    ```
 
 3. *Run the Application*:
-    bash
+    ```bash
     npm start
-    
+    ```
 
 5. *Access the Application*:
     Open your browser and navigate to http://localhost:3000.
