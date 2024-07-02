@@ -12,11 +12,10 @@ const EventList = () => {
       try {
         const response = await axiosInstance.get('http://192.168.1.106:5001/api/events');
         const fetchedEvents = response.data;
-        
+
         if (Array.isArray(fetchedEvents)) {
           setEvents(fetchedEvents);
-          // Store events in local storage
-         // localStorage.setItem('events', JSON.stringify(fetchedEvents));
+          localStorage.setItem('events', JSON.stringify(fetchedEvents)); // Store events in local storage
         } else {
           console.error('Fetched data is not an array:', fetchedEvents);
         }
@@ -50,6 +49,7 @@ const EventList = () => {
             <p>{event.description}</p>
             <p>{new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
             <p>Type: {event.type}</p>
+            <p>Price: ${event.price}</p> {/* Display price for each event */}
           </li>
         ))}
       </ul>

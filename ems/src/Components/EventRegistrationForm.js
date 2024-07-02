@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { registerForEvent } from './Booking'; // Import registerForEvent function
 import axiosInstance from '../api/axios';
-import { useNavigate } from 'react-router-dom'
 import './EventRegistrationForm.css'; // Import the CSS file
 
 const EventRegistrationForm = () => {
@@ -14,18 +13,25 @@ const EventRegistrationForm = () => {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [registrationMessage, setRegistrationMessage] = useState('');
+  const [price, setPrice] = useState(0); // State to hold the price per ticket
+  const [totalAmount, setTotalAmount] = useState(0); // State to hold the total amount
 
   useEffect(() => {
     const fetchEventDetails = async () => {
       try {
-        const response = await axiosInstance.get(`http://192.168.1.106:5001/api/events`);
+        const response = await axiosInstance.get(`http://192.168.1.106:5001/api/events/${eventId}`);
         setEventDetails(response.data);
+        setPrice(response.data.price); // Assume the event details include the price
       } catch (error) {
         console.error('Error fetching event details:', error);
       }
     };
     fetchEventDetails();
   }, [eventId]);
+
+  useEffect(() => {
+    setTotalAmount(numberOfPeople * price);
+  }, [numberOfPeople, price]);
 
   const handleRegistration = async (event) => {
     event.preventDefault();
@@ -75,6 +81,11 @@ const EventRegistrationForm = () => {
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
+
+        <div className="price-details">
+          <p>Price per Ticket: ${price}</p>
+          <p>Total Amount: ${totalAmount}</p>
+        </div>
 
         <button type="submit">Submit</button>
       </form>
